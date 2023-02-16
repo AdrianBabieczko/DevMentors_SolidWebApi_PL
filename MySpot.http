@@ -4,4 +4,10 @@
 GET  {{url}}
 
 ###
-GET {{url}}/weatherforecast
+GET {{url}}/reservations/
+
+###
+POST {{url}}/reservations/
+
+###
+PUT {{url}}/reservations/
