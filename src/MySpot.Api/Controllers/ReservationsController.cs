@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using MySpot.Api.Models;
 
 namespace MySpot.Api.Controllers;
 
+[ApiController]
 [Route(template:"reservations")]
 public class ReservationsController : ControllerBase
 {
@@ -9,9 +11,9 @@ public class ReservationsController : ControllerBase
     public void Get()
     {
     }
-    
+
     [HttpPost]
-    public void Post()
+    public void Post(Reservation reservation)
     {
     }
 }
