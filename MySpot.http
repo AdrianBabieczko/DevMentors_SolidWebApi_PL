@@ -12,9 +12,8 @@ Content-Type: application/json
 
 {
     "employeename": "Jon Doe",
-    "parkingSpotName": "P1",
-    "licensePlate": "XYZ123",
-    "date": "2023-02-24"
+    "parkingSpotName": "P0",
+    "licensePlate": "XYZ123"
 }
 
 ###
