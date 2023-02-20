@@ -26,5 +26,8 @@ PUT {{url}}/reservations/{{reservationId}}
 Content-Type: application/json
 
 {
-    "licensePlate": "XYZ123"
+    "licensePlate": "XYZ12312121"
 }
+
+###
+DELETE {{url}}/reservations/{{reservationId}}
