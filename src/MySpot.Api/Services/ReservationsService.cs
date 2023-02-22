@@ -20,6 +20,9 @@ public class ReservationsService
 
     public int? Create(Reservation reservation)
     {
+        var now = DateTime.UtcNow.Date;
+        var pastDays = now.DayOfWeek is DayOfWeek.Sunday ? 7 : (int)now.DayOfWeek;
+        
         if (ParkingSpotNames.All(x=>x != reservation.ParkingSpotName))
         {
             return default;
