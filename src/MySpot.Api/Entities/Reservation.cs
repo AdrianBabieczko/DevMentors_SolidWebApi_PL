@@ -1,4 +1,4 @@
-namespace MySpot.Api.Models;
+namespace MySpot.Api.Entities;
 
 public class Reservation
 {
