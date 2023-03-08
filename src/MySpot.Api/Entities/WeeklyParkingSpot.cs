@@ -22,9 +22,9 @@ public class WeeklyParkingSpot
     {
         var now = DateTime.UtcNow.Date;
         
-        if (!(reservation.Date.Date >= now && reservation.Date.Date <= now.AddDays(remainingDays)))
+        if (reservation.Date.Date < From || reservation.Date.Date > To || reservation.Date.Date < now.Date)
         {
-            return default;
+            
         }
     }
 }
