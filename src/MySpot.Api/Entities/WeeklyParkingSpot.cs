@@ -1,3 +1,5 @@
+using MySpot.Api.Exceptions;
+
 namespace MySpot.Api.Entities;
 
 public class WeeklyParkingSpot
@@ -20,11 +22,23 @@ public class WeeklyParkingSpot
 
     public void AddReservation(Reservation reservation)
     {
-        var now = DateTime.UtcNow.Date;
+        var isInvalidDate = reservation.Date.Date < From ||
+                            reservation.Date.Date > To ||
+                            reservation.Date.Date < DateTime.UtcNow.Date;
         
-        if (reservation.Date.Date < From || reservation.Date.Date > To || reservation.Date.Date < now.Date)
+        if (isInvalidDate)
         {
-            
+            throw new InvalidReservationDateException(reservation.Date);
         }
+
+        var reservationAlreadyExists = Reservations.Any(x =>
+            x.Date.Date == reservation.Date.Date);
+
+        if (reservationAlreadyExists)
+        {
+            throw new ParkingSpotAlreadyReservedException(Name, reservation.Date);
+        }
+
+        _reservations.Add(reservation);
     }
 }
