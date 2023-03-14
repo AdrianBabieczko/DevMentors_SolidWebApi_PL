@@ -1,3 +1,4 @@
+using MySpot.Api.DTO;
 using MySpot.Api.Entities;
 
 namespace MySpot.Api.Services;
@@ -19,15 +20,17 @@ public class ReservationsService
     public IEnumerable<Reservation> GetAllWeekly()
         => WeeklyParkingSpots.SelectMany(x => x.Reservations);
 
-    public Guid? Create(Reservation reservation)
+    public Guid? Create(ReservationDto reservationDto)
     {
-        var weeklyParkingSpot = WeeklyParkingSpots.SingleOrDefault(x => x.Id == reservation.ParkingSpotId);
+        var weeklyParkingSpot = WeeklyParkingSpots.SingleOrDefault(x => x.Id == reservationDto.ParkingSpotId);
         if (weeklyParkingSpot is null)
         {
             return default;
         }
 
-        reservation.Id = Guid.NewGuid();
+        var reservation = new Reservation(reservationDto.Id, reservationDto.ParkingSpotId, reservationDto.EmployeeName,
+            reservationDto.LicensePlate, reservationDto.Date); 
+
         weeklyParkingSpot.AddReservation(reservation);
 
         return reservation.Id;
