@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MySpot.Api.Commands;
 using MySpot.Api.Entities;
 using MySpot.Api.Services;
 
@@ -26,9 +27,9 @@ public class ReservationsController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult Post(Reservation reservation)
+    public ActionResult Post(CreateReservation command)
     {
-        var id = _service.Create(reservation);
+        var id = _service.Create(command with {ReservationId = Guid.NewGuid()});
 
         if (id is null)
         {
