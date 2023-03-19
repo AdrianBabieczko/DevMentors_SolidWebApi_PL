@@ -40,10 +40,9 @@ public class ReservationsController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
-    public ActionResult Put(Guid id, Reservation reservation)
+    public ActionResult Put(Guid id, ChangeReservationLicensePlate command)
     {
-        reservation.Id = id;
-        if (_service.Update(reservation))
+        if (_service.Update(command with {ReservationId = id}))
         {
             return NoContent();
         }
@@ -54,7 +53,7 @@ public class ReservationsController : ControllerBase
     [HttpDelete("{id:guid}")]
     public ActionResult Delete(Guid id)
     {
-        if (_service.Delete(id))
+        if (_service.Delete(new DeleteReservation(id)))
         {
             return NoContent();
         }

@@ -41,4 +41,7 @@ public class WeeklyParkingSpot
 
         _reservations.Add(reservation);
     }
+
+    public void RemoveReservation(Guid reservationId) =>
+        _reservations.Remove(_reservations.FirstOrDefault(x => x.Id == reservationId));
 }
