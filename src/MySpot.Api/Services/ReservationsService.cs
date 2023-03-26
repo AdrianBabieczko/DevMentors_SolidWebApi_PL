@@ -46,7 +46,7 @@ public class ReservationsService
         var reservation = new Reservation(command.ReservationId, command.ParkingSpotId, command.EmployeeName,
             command.LicensePlate, command.Date); 
 
-        weeklyParkingSpot.AddReservation(reservation);
+        weeklyParkingSpot.AddReservation(reservation, Clock.Current());
 
         return reservation.Id;
     }
